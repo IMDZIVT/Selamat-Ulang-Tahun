@@ -168,6 +168,8 @@
     line-height:1.45;
     font-size: clamp(13px,1.4vw,15px);
     color: #f3f6fb;
+    opacity: 0;               /* hidden initially */
+    transition: opacity .45s ease;
   }
   .note{ color: var(--muted); font-size: clamp(12px,1.2vw,13px); }
 
@@ -315,7 +317,13 @@ playBtn.addEventListener('click', async ()=>{
   }catch(e){
     console.warn('Audio play blocked or failed:', e);
   }
+
+  // Tampilkan pesan dulu baru jalankan typewriter
+  msgBox.style.opacity = 1;
+
+  // Jalankan typewriter (mengambil teks yang sudah ada di msgBox)
   typeWriter(msgBox, 16);
+
   startConfetti();
   makeHearts(12);
   startCollage();
